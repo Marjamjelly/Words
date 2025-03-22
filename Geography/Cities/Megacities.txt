@@ -1,0 +1,32 @@
+Bangalore, India
+Bangkok, Thailand
+Beijing, China
+Bogotá, Colombia
+Buenos Aires, Argentina
+Cairo, Egypt
+Calcutta, India
+Chennai, India
+Chongqing, China
+Delhi, India
+Dhaka, Bangladesh
+Guangzhou, China
+Istanbul, Turkey
+Jakarta, Indonesia
+Karachi, Pakistan
+Kinshasa, Democratic Republic of the Congo
+Lagos, Nigeria
+Lahore, Pakistan
+Lima, Peru
+Los Angeles, United States of America
+Manila, Philippines
+Moscow, Russia
+Mumbai, India
+New York City, United States of America
+Osaka, Japan
+Paris, France
+Rio de Janeiro, Brazil
+Shanghai, China
+Shenzhen, China
+São Paulo, Brazil
+Tianjin, China
+Tokyo, Japan

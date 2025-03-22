@@ -1,8 +1,8 @@
-Albania
+Austria
 Belgium
 Bulgaria
-Canada
 Croatia
+Cyprus
 Czechia
 Denmark
 Estonia
@@ -11,15 +11,13 @@ France
 Germany
 Greece
 Hungary
-Iceland
+Ireland
 Italy
 Latvia
 Lithuania
 Luxembourg
-Montenegro
+Malta
 Netherlands
-North Macedonia
-Norway
 Poland
 Portugal
 Romania
@@ -27,6 +25,3 @@ Slovakia
 Slovenia
 Spain
 Sweden
-Turkey
-United Kingdom
-United States 
