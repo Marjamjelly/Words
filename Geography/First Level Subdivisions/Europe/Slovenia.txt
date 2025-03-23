@@ -162,13 +162,7 @@ Sveti Jurij ob Ščavnici
 Sveti Jurij v Slovenskih goricah
 Sveti Tomaž
 Tabor
-Tomaž
-Tabor
 Tišina
-Tolmin
-Trbovlje
-Trebnje
-Trnovska
 Tolmin
 Trbovlje
 Trebnje
@@ -183,17 +177,7 @@ Veržej
 Videm
 Vipava
 Vitanje
-Lašče
-Veržej
-Videm
-Vipava
-Vitanje
 Vodice
-Vojnik
-Vransko
-Vrhnika
-Vuzenica
-Zagorje
 Vojnik
 Vransko
 Vrhnika
@@ -218,4 +202,11 @@ Zreče
 Šmarješke Toplice
 Šmartno ob Paki
 Šmartno pri Litiji
-LitijiŠoštanjŠtoreŽalecŽeleznikiŽetaleŽiriŽirovnicaŽužemberkŠtoreŽalecŽeleznikiŽetaleŽiriŽirovnicaŽužemberk
+Šoštanj
+Štore
+Žalec
+Železniki
+Žetale
+Žiri
+Žirovnica
+Žužemberk
