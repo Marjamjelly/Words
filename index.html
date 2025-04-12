@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Word List Central</title>
+  <style>
+    :root {
+      --bg-color: #121212;
+      --text-color: #f0f0f0;
+      --accent-color: #1e88e5;
+      --button-bg: #1f1f1f;
+      --button-hover: #333;
+      --card-bg: #1e1e1e;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+    }
+
+    header, footer {
+      background-color: #000;
+      color: var(--text-color);
+      padding: 1rem;
+      text-align: center;
+    }
+
+    nav a {
+      color: var(--accent-color);
+      margin: 0 1rem;
+      text-decoration: none;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 2rem auto;
+      padding: 2rem;
+      background-color: var(--card-bg);
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+    }
+
+    .button-group {
+      margin-bottom: 1rem;
+    }
+
+    button {
+      margin: 0.3rem;
+      padding: 0.5rem 1rem;
+      font-size: 0.9rem;
+      background-color: var(--button-bg);
+      color: var(--text-color);
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background-color 0.2s;
+    }
+
+    button:hover {
+      background-color: var(--button-hover);
+    }
+
+    pre {
+      background: #2a2a2a;
+      color: var(--text-color);
+      padding: 1rem;
+      border-radius: 8px;
+      white-space: pre-wrap;
+      overflow-x: auto;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Word List Central</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="categories.html">Categories</a>
+    </nav>
+  </header>
+
+  <div class="container">
+    <h2>List Title Goes Here</h2>
+    <div class="button-group">
+      <button onclick="copyText()">Copy</button>
+      <button onclick="sortText()">Alphabetize</button>
+      <button onclick="reverseSortText()">Reverse</button>
+      <button onclick="capitalizeWords()">Capitalize</button>
+      <button onclick="toLowerCaseWords()">Lowercase</button>
+    </div>
+    <pre id="wordList">
+Paste your word list here...
+    </pre>
+  </div>
+
+  <footer>
+    &copy; 2025 Word List Central
+  </footer>
+
+  <script>
+    function getWords() {
+      return document.getElementById('wordList').innerText.trim().split(/\n+/);
+    }
+
+    function setWords(words) {
+      document.getElementById('wordList').innerText = words.join('\n');
+    }
+
+    function copyText() {
+      const text = document.getElementById('wordList').innerText;
+      navigator.clipboard.writeText(text);
+    }
+
+    function sortText() {
+      const sorted = getWords().sort();
+      setWords(sorted);
+    }
+
+    function reverseSortText() {
+      const reversed = getWords().sort().reverse();
+      setWords(reversed);
+    }
+
+    function capitalizeWords() {
+      const capitalized = getWords().map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase());
+      setWords(capitalized);
+    }
+
+    function toLowerCaseWords() {
+      const lower = getWords().map(word => word.toLowerCase());
+      setWords(lower);
+    }
+  </script>
+</body>
+</html>
