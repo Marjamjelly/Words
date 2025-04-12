@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Word List</title>
+  <style>
+    :root {
+      --bg-color: #121212;
+      --text-color: #f0f0f0;
+      --accent-color: #1e88e5;
+      --card-bg: #1e1e1e;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+    }
+
+    header, footer {
+      background-color: #000;
+      color: var(--text-color);
+      padding: 1rem;
+      text-align: center;
+      animation: fadeIn 1s ease-in-out;
+    }
+
+    nav a {
+      color: var(--accent-color);
+      margin: 0 1rem;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    nav a:hover {
+      color: white;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 2rem auto;
+      padding: 2rem;
+      background-color: var(--card-bg);
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+      animation: slideUp 0.7s ease-out;
+    }
+
+    .button-section {
+      margin-bottom: 1.5rem;
+    }
+
+    .button-section h3 {
+      margin-bottom: 0.5rem;
+    }
+
+    .button-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    button {
+      background-color: #2a2a2a;
+      color: white;
+      padding: 0.5rem 1rem;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #333;
+    }
+
+    input[type="text"] {
+      padding: 0.5rem;
+      border-radius: 8px;
+      border: none;
+      width: 100%;
+      margin-bottom: 1rem;
+    }
+
+    pre {
+      white-space: pre-wrap;
+      background-color: #1e1e1e;
+      padding: 1rem;
+      border-radius: 8px;
+      overflow-x: auto;
+      font-size: 1rem;
+      user-select: text;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes slideUp {
+      from { transform: translateY(20px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Word List</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="categories.html">Categories</a>
+    </nav>
+  </header>
+
+  <div class="container">
+    <input type="text" id="searchInput" placeholder="Search..." oninput="filterList()">
+
+    <div class="button-section">
+      <h3>Clipboard & Export</h3>
+      <div class="button-group">
+        <button onclick="copyList()">Copy</button>
+        <button onclick="csvExport()">Export CSV</button>
+        <button onclick="textExport()">Export TXT</button>
+      </div>
+    </div>
+
+    <div class="button-section">
+      <h3>Sort & Style</h3>
+      <div class="button-group">
+        <button onclick="alphabetize()">A → Z</button>
+        <button onclick="reverseAlphabetize()">Z → A</button>
+        <button onclick="sortByLength()">By Length</button>
+        <button onclick="toggleStyle()">Toggle Style</button>
+      </div>
+    </div>
+
+    <div class="button-section">
+      <h3>Text Formatting</h3>
+      <div class="button-group">
+        <button onclick="capitalizeWords()">Capitalize</button>
+        <button onclick="lowercaseWords()">lowercase</button>
+        <button onclick="uppercaseWords()">UPPERCASE</button>
+        <button onclick="bulletList()">Bulleted List</button>
+        <button onclick="numberList()">Numbered List</button>
+        <button onclick="markdownList()">Markdown Format</button>
+      </div>
+    </div>
+
+    <pre id="wordList" contenteditable="false">
+apple
+banana
+cherry
+date
+elderberry
+fig
+grape
+    </pre>
+  </div>
+
+  <footer>
+    &copy; 2025 Word List Central
+  </footer>
+
+  <script>
+    const listBox = document.getElementById("wordList");
+    const searchInput = document.getElementById("searchInput");
+    let originalList = listBox.textContent.trim().split(/\n|\r|\r\n/);
+    let styled = false;
+
+    function getListArray() {
+      return listBox.textContent.trim().split(/\n|\r|\r\n/).filter(line => line.trim() !== '');
+    }
+
+    function setListArray(lines) {
+      listBox.textContent = lines.join("\n");
+    }
+
+    function filterList() {
+      const query = searchInput.value.toLowerCase();
+      const filtered = originalList.filter(item => item.toLowerCase().includes(query));
+      setListArray(filtered);
+    }
+
+    function copyList() {
+      navigator.clipboard.writeText(listBox.textContent);
+      alert("Copied to clipboard!");
+    }
+
+    function alphabetize() {
+      const lines = getListArray().sort((a, b) => a.localeCompare(b));
+      setListArray(lines);
+    }
+
+    function reverseAlphabetize() {
+      const lines = getListArray().sort((a, b) => b.localeCompare(a));
+      setListArray(lines);
+    }
+
+    function sortByLength() {
+      const lines = getListArray().sort((a, b) => a.length - b.length);
+      setListArray(lines);
+    }
+
+    function capitalizeWords() {
+      const lines = getListArray().map(line => line.charAt(0).toUpperCase() + line.slice(1).toLowerCase());
+      setListArray(lines);
+    }
+
+    function lowercaseWords() {
+      const lines = getListArray().map(line => line.toLowerCase());
+      setListArray(lines);
+    }
+
+    function uppercaseWords() {
+      const lines = getListArray().map(line => line.toUpperCase());
+      setListArray(lines);
+    }
+
+    function bulletList() {
+      const lines = getListArray().map(line => `• ${line}`);
+      setListArray(lines);
+    }
+
+    function numberList() {
+      const lines = getListArray().map((line, i) => `${i + 1}. ${line}`);
+      setListArray(lines);
+    }
+
+    function markdownList() {
+      const lines = getListArray().map(line => `- ${line}`);
+      setListArray(lines);
+    }
+
+    function csvExport() {
+      const csvContent = getListArray().join(",");
+      const blob = new Blob([csvContent], { type: "text/csv" });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement("a");
+      link.href = url;
+      link.download = "wordlist.csv";
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    }
+
+    function textExport() {
+      const txtContent = getListArray().join("\n");
+      const blob = new Blob([txtContent], { type: "text/plain" });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement("a");
+      link.href = url;
+      link.download = "wordlist.txt";
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    }
+
+    function toggleStyle() {
+      styled = !styled;
+      const lines = getListArray();
+      if (styled) {
+        listBox.innerHTML = lines.map(line => `<span style='color: #1e88e5;'>${line}</span>`).join("<br>");
+      } else {
+        setListArray(lines);
+      }
+    }
+  </script>
+</body>
+</html>

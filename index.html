@@ -1,16 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Word List Central</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home</title>
   <style>
     :root {
       --bg-color: #121212;
       --text-color: #f0f0f0;
       --accent-color: #1e88e5;
-      --button-bg: #1f1f1f;
-      --button-hover: #333;
       --card-bg: #1e1e1e;
     }
 
@@ -20,6 +18,7 @@
       padding: 0;
       background-color: var(--bg-color);
       color: var(--text-color);
+      animation: fadeIn 1s ease-in-out;
     }
 
     header, footer {
@@ -27,7 +26,6 @@
       color: var(--text-color);
       padding: 1rem;
       text-align: center;
-      animation: fadeIn 1s ease-in-out;
     }
 
     nav a {
@@ -41,45 +39,64 @@
       color: white;
     }
 
-    .container {
-      max-width: 800px;
-      margin: 2rem auto;
-      padding: 2rem;
-      background-color: var(--card-bg);
-      border-radius: 12px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
-      animation: slideUp 0.7s ease-out;
+    .hero {
+      padding: 4rem 2rem;
+      text-align: center;
+      background: linear-gradient(135deg, #1e1e1e 0%, #2a2a2a 100%);
+      animation: slideUp 1s ease-out;
     }
 
-    .button-group {
+    .hero h1 {
+      font-size: 3rem;
       margin-bottom: 1rem;
-      animation: fadeIn 1.2s ease;
     }
 
-    button {
-      margin: 0.3rem;
-      padding: 0.5rem 1rem;
-      font-size: 0.9rem;
-      background-color: var(--button-bg);
-      color: var(--text-color);
+    .hero p {
+      font-size: 1.2rem;
+      margin-bottom: 2rem;
+    }
+
+    .cta-button {
+      background-color: var(--accent-color);
+      color: white;
+      padding: 0.8rem 1.6rem;
       border: none;
-      border-radius: 6px;
-      cursor: pointer;
-      transition: background-color 0.2s, transform 0.2s;
-    }
-
-    button:hover {
-      background-color: var(--button-hover);
-      transform: scale(1.05);
-    }
-
-    pre {
-      background: #2a2a2a;
-      color: var(--text-color);
-      padding: 1rem;
       border-radius: 8px;
-      white-space: pre-wrap;
-      overflow-x: auto;
+      font-size: 1rem;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background-color 0.3s ease;
+    }
+
+    .cta-button:hover {
+      background-color: #1565c0;
+    }
+
+    .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      padding: 2rem;
+      max-width: 1000px;
+      margin: auto;
+    }
+
+    .card {
+      background-color: var(--card-bg);
+      padding: 1.5rem;
+      border-radius: 12px;
+      text-align: center;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+      transition: transform 0.3s ease;
+      animation: fadeIn 0.5s ease-in;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+    }
+
+    footer {
+      margin-top: 2rem;
     }
 
     @keyframes fadeIn {
@@ -88,71 +105,43 @@
     }
 
     @keyframes slideUp {
-      from { transform: translateY(20px); opacity: 0; }
+      from { transform: translateY(30px); opacity: 0; }
       to { transform: translateY(0); opacity: 1; }
     }
   </style>
 </head>
 <body>
   <header>
-    <h1>Word List Central</h1>
+    <h1>Words</h1>
     <nav>
       <a href="index.html">Home</a>
       <a href="categories.html">Categories</a>
     </nav>
   </header>
 
-  <div class="container">
-    <h2>List Title Goes Here</h2>
-    <div class="button-group">
-      <button onclick="copyText()">Copy</button>
-      <button onclick="sortText()">Alphabetize</button>
-      <button onclick="reverseSortText()">Reverse</button>
-      <button onclick="capitalizeWords()">Capitalize</button>
-      <button onclick="toLowerCaseWords()">Lowercase</button>
+  <section class="hero">
+    <h1>Welcome to Words</h1>
+    <p>Your go-to source for curated, formatted, and ready-to-copy word lists.</p>
+    <a href="categories.html" class="cta-button">Browse Categories</a>
+  </section>
+
+  <section class="features">
+    <div class="card">
+      <h3>Ready to Use</h3>
+      <p>Each word list is formatted in plain text and perfect for quick use or study.</p>
     </div>
-    <pre id="wordList">
-Paste your word list here...
-    </pre>
-  </div>
+    <div class="card">
+      <h3>Custom Tools</h3>
+      <p>Use built-in buttons to copy, sort, capitalize, or lowercase your list with one click.</p>
+    </div>
+    <div class="card">
+      <h3>Organized by Category</h3>
+      <p>Easily find lists by topic — from countries to names, and everything in between.</p>
+    </div>
+  </section>
 
   <footer>
-    &copy; 2025 Word List Central
+    &copy; 2025 Marjamjelly
   </footer>
-
-  <script>
-    function getWords() {
-      return document.getElementById('wordList').innerText.trim().split(/\n+/);
-    }
-
-    function setWords(words) {
-      document.getElementById('wordList').innerText = words.join('\n');
-    }
-
-    function copyText() {
-      const text = document.getElementById('wordList').innerText;
-      navigator.clipboard.writeText(text);
-    }
-
-    function sortText() {
-      const sorted = getWords().sort();
-      setWords(sorted);
-    }
-
-    function reverseSortText() {
-      const reversed = getWords().sort().reverse();
-      setWords(reversed);
-    }
-
-    function capitalizeWords() {
-      const capitalized = getWords().map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase());
-      setWords(capitalized);
-    }
-
-    function toLowerCaseWords() {
-      const lower = getWords().map(word => word.toLowerCase());
-      setWords(lower);
-    }
-  </script>
 </body>
 </html>
