@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Categories - Word List Central</title>
+  <style>
+    :root {
+      --bg-color: #121212;
+      --text-color: #f0f0f0;
+      --accent-color: #1e88e5;
+      --card-bg: #1e1e1e;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+    }
+
+    header, footer {
+      background-color: #000;
+      color: var(--text-color);
+      padding: 1rem;
+      text-align: center;
+      animation: fadeIn 1s ease-in-out;
+    }
+
+    nav a {
+      color: var(--accent-color);
+      margin: 0 1rem;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    nav a:hover {
+      color: white;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 2rem auto;
+      padding: 2rem;
+      background-color: var(--card-bg);
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+      animation: slideUp 0.7s ease-out;
+    }
+
+    h2 {
+      margin-bottom: 1rem;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    li a {
+      display: block;
+      padding: 0.5rem 1rem;
+      margin: 0.5rem 0;
+      background-color: #2a2a2a;
+      color: var(--text-color);
+      border-radius: 8px;
+      text-decoration: none;
+      transition: background-color 0.3s ease;
+    }
+
+    li a:hover {
+      background-color: #333;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes slideUp {
+      from { transform: translateY(20px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Word List Central</h1>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="categories.html">Categories</a>
+    </nav>
+  </header>
+
+  <div class="container">
+    <h2>Word List Categories</h2>
+    <ul>
+      <li><a href="animals.html">Animals</a></li>
+      <li><a href="countries.html">Countries</a></li>
+      <li><a href="colors.html">Colors</a></li>
+      <!-- Add more categories as needed -->
+    </ul>
+  </div>
+
+  <footer>
+    &copy; 2025 Word List Central
+  </footer>
+</body>
+</html>
