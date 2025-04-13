@@ -1,5 +1,5 @@
-Denmark   -   Greenland   -   Faroe Islands
-Finland   -   Åland Islands
+Denmark
+Finland
 Iceland
 Norway
 Sweden
