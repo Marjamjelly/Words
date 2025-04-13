@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Word List</title>
   <style>
     :root {
@@ -25,14 +25,12 @@
       color: var(--text-color);
       padding: 1rem;
       text-align: center;
-      animation: fadeIn 1s ease-in-out;
     }
 
     nav a {
       color: var(--accent-color);
       margin: 0 1rem;
       text-decoration: none;
-      transition: color 0.3s ease;
     }
 
     nav a:hover {
@@ -46,7 +44,6 @@
       background-color: var(--card-bg);
       border-radius: 12px;
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
-      animation: slideUp 0.7s ease-out;
     }
 
     .button-section {
@@ -70,7 +67,6 @@
       border: none;
       border-radius: 8px;
       cursor: pointer;
-      transition: background-color 0.3s ease;
     }
 
     button:hover {
@@ -94,21 +90,11 @@
       font-size: 1rem;
       user-select: text;
     }
-
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
-
-    @keyframes slideUp {
-      from { transform: translateY(20px); opacity: 0; }
-      to { transform: translateY(0); opacity: 1; }
-    }
   </style>
 </head>
 <body>
   <header>
-    <h1>Word List</h1>
+    <h1>Words</h1>
     <nav>
       <a href="index.html">Home</a>
       <a href="categories.html">Categories</a>
@@ -116,7 +102,7 @@
   </header>
 
   <div class="container">
-    <input type="text" id="searchInput" placeholder="Search..." oninput="filterList()">
+    <input type="text" id="searchInput" placeholder="Search..." oninput="filterList()" />
 
     <div class="button-section">
       <h3>Clipboard & Export</h3>
@@ -133,7 +119,6 @@
         <button onclick="alphabetize()">A → Z</button>
         <button onclick="reverseAlphabetize()">Z → A</button>
         <button onclick="sortByLength()">By Length</button>
-        <button onclick="toggleStyle()">Toggle Style</button>
       </div>
     </div>
 
@@ -143,6 +128,13 @@
         <button onclick="capitalizeWords()">Capitalize</button>
         <button onclick="lowercaseWords()">lowercase</button>
         <button onclick="uppercaseWords()">UPPERCASE</button>
+        <button onclick="plainText()">Plain Text</button>
+      </div>
+    </div>
+
+    <div class="button-section">
+      <h3>List Format</h3>
+      <div class="button-group">
         <button onclick="bulletList()">Bulleted List</button>
         <button onclick="numberList()">Numbered List</button>
         <button onclick="markdownList()">Markdown Format</button>
@@ -161,17 +153,21 @@ grape
   </div>
 
   <footer>
-    &copy; 2025 Word List Central
+    &copy; <a href="https://marjamjelly.github.io">Marjamjelly</a>
   </footer>
 
   <script>
     const listBox = document.getElementById("wordList");
     const searchInput = document.getElementById("searchInput");
     let originalList = listBox.textContent.trim().split(/\n|\r|\r\n/);
-    let styled = false;
+    let currentListType = null;
 
     function getListArray() {
-      return listBox.textContent.trim().split(/\n|\r|\r\n/).filter(line => line.trim() !== '');
+      return listBox.textContent
+        .trim()
+        .split(/\n|\r|\r\n/)
+        .map(line => line.replace(/^[-•*]\s|^\d+\.\s/, ''))
+        .filter(line => line.trim() !== '');
     }
 
     function setListArray(lines) {
@@ -192,46 +188,67 @@ grape
     function alphabetize() {
       const lines = getListArray().sort((a, b) => a.localeCompare(b));
       setListArray(lines);
+      currentListType = null;
     }
 
     function reverseAlphabetize() {
       const lines = getListArray().sort((a, b) => b.localeCompare(a));
       setListArray(lines);
+      currentListType = null;
     }
 
     function sortByLength() {
       const lines = getListArray().sort((a, b) => a.length - b.length);
       setListArray(lines);
+      currentListType = null;
     }
 
     function capitalizeWords() {
       const lines = getListArray().map(line => line.charAt(0).toUpperCase() + line.slice(1).toLowerCase());
       setListArray(lines);
+      currentListType = null;
     }
 
     function lowercaseWords() {
       const lines = getListArray().map(line => line.toLowerCase());
       setListArray(lines);
+      currentListType = null;
     }
 
     function uppercaseWords() {
       const lines = getListArray().map(line => line.toUpperCase());
       setListArray(lines);
+      currentListType = null;
     }
 
     function bulletList() {
-      const lines = getListArray().map(line => `• ${line}`);
-      setListArray(lines);
+      if (currentListType !== 'bulleted') {
+        const lines = getListArray().map(line => `• ${line}`);
+        setListArray(lines);
+        currentListType = 'bulleted';
+      }
     }
 
     function numberList() {
-      const lines = getListArray().map((line, i) => `${i + 1}. ${line}`);
-      setListArray(lines);
+      if (currentListType !== 'numbered') {
+        const lines = getListArray().map((line, i) => `${i + 1}. ${line}`);
+        setListArray(lines);
+        currentListType = 'numbered';
+      }
     }
 
     function markdownList() {
-      const lines = getListArray().map(line => `- ${line}`);
+      if (currentListType !== 'markdown') {
+        const lines = getListArray().map(line => `- ${line}`);
+        setListArray(lines);
+        currentListType = 'markdown';
+      }
+    }
+
+    function plainText() {
+      const lines = getListArray();
       setListArray(lines);
+      currentListType = null;
     }
 
     function csvExport() {
@@ -256,16 +273,6 @@ grape
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
-    }
-
-    function toggleStyle() {
-      styled = !styled;
-      const lines = getListArray();
-      if (styled) {
-        listBox.innerHTML = lines.map(line => `<span style='color: #1e88e5;'>${line}</span>`).join("<br>");
-      } else {
-        setListArray(lines);
-      }
     }
   </script>
 </body>
